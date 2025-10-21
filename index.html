@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Trade Platform</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #0A0A0A;
+      color: #FFFFFF;
+      line-height: 1.5;
+    }
+    .section {
+      padding: 80px 20px;
+      text-align: center;
+    }
+    .hero {
+      padding: 120px 20px;
+      background-color: #0D0D0D;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 650px;
+      margin: 0 auto 40px;
+      color: #AAAAAA;
+    }
+    a.button {
+      display: inline-block;
+      padding: 15px 30px;
+      border: 2px solid #00FFC6;
+      border-radius: 25px;
+      color: #00FFC6;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    a.button:hover {
+      background: #00FFC6;
+      color: #0A0A0A;
+    }
+
+    .cards-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 40px;
+    }
+    .card {
+      width: 300px;
+      padding: 20px;
+      border: 2px solid #00FFC6;
+      border-radius: 20px;
+      background-color: #0D0D0D;
+      text-align: left;
+      position: relative;
+      color: #FFFFFF;
+    }
+    .card h2 {
+      margin-bottom: 10px;
+      font-size: 1.6rem;
+      color: #00FFC6;
+    }
+    .card .percentage {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #00FFC6;
+      margin-bottom: 10px;
+    }
+    .card p {
+      color: #AAAAAA;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+    .card .chart {
+      width: 100%;
+      height: 100px;
+      background: linear-gradient(90deg, transparent, #00FFC6);
+      border-radius: 10px;
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    .learn-section {
+      background-color: #0D0D0D;
+    }
+    .learn-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    .learn-section p {
+      font-size: 1.1rem;
+      color: #AAAAAA;
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+    .learn-card {
+      width: 280px;
+      padding: 20px;
+      border: 2px solid #00FFC6;
+      border-radius: 20px;
+      background-color: #0D0D0D;
+      color: #FFFFFF;
+      text-align: left;
+    }
+    .learn-card h3 {
+      margin-bottom: 8px;
+      font-size: 1.4rem;
+      color: #00FFC6;
+    }
+    .learn-card h4 {
+      margin-bottom: 12px;
+      font-size: 1rem;
+      color: #00FFC6;
+      opacity: 0.8;
+    }
+    .learn-card p {
+      color: #AAAAAA;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 900px) {
+      .cards-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .card, .learn-card {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <section class="hero section">
+    <h1>Trade Smarter with AI</h1>
+    <p>Live signals, simple lessons, and powerful tools to help you master options and stocks without guesswork.</p>
+    <a href="#picks" class="button">Explore Today's Signals</a>
+  </section>
+
+  <!-- Today's AI Picks Section -->
+  <section class="section" id="picks">
+    <h2>Today's AI Picks</h2>
+    <p>Get daily insights on high-probability setups.</p>
+    <div class="cards-container">
+      <!-- NVDA Card -->
+      <div class="card">
+        <h2>NVDA Breakout</h2>
+        <div class="percentage">81%</div>
+        <p>Price above SMA50 with volume increase.</p>
+        <div class="chart"></div>
+      </div>
+      <!-- SPY Card -->
+      <div class="card">
+        <h2>SPY Reversal</h2>
+        <div class="percentage">68%</div>
+        <p>Momentum slowing under resistance zone.</p>
+        <div class="chart"></div>
+      </div>
+      <!-- TSLA Card -->
+      <div class="card">
+        <h2>TSLA Momentum</h2>
+        <div class="percentage">85%</div>
+        <p>Strong uptrend with rising volume.</p>
+        <div class="chart"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Learn Center Section -->
+  <section class="section learn-section">
+    <h2>Learn the Market</h2>
+    <p>Short, visual lessons that explain fundamentals, technicals, and options trading—so you know why a move happens before you take it.</p>
+    <div class="cards-container">
+      <!-- Fundamentals Card -->
+      <div class="learn-card">
+        <h3>Fundamentals 101</h3>
+        <h4>How businesses create value</h4>
+        <p>Learn how earnings, cash flow, and catalysts drive long-term growth.</p>
+      </div>
+      <!-- Technicals Card -->
+      <div class="learn-card">
+        <h3>Technical Analysis</h3>
+        <h4>Charts made simple</h4>
+        <p>Understand trends, breakouts, and momentum—no confusing jargon.</p>
+      </div>
+      <!-- Options Card -->
+      <div class="learn-card">
+        <h3>Options Basics</h3>
+        <h4>Leverage without gambling</h4>
+        <p>See how calls, puts, and volatility shape opportunity and risk.</p>
+      </div>
+    </div>
+    <div style="margin-top: 50px;">
+      <a href="#" class="button">Start Learning</a>
+    </div>
+  </section>
+</body>
+</html>
