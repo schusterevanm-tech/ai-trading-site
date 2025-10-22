@@ -1,106 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Survey - AI Trade Platform</title>
-<style>
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #0A0A0A;
-  color: #FFFFFF;
-}
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 20px;
-}
-.form-card {
-  background-color: #0D0D0D;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 255, 198, 0.5);
-  width: 100%;
-  max-width: 500px;
-}
-.form-card h1 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  text-align: center;
-}
-.form-card label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
-}
-.form-card select, .form-card input[type="text"] {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: none;
-  border-radius: 5px;
-  background-color: #1A1A1A;
-  color: #FFFFFF;
-}
-.form-card textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: none;
-  border-radius: 5px;
-  background-color: #1A1A1A;
-  color: #FFFFFF;
-  resize: vertical;
-  min-height: 100px;
-}
-.form-card input[type="submit"] {
-  background-color: #00FFC6;
-  color: #0A0A0A;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-}
-.form-card input[type="submit"]:hover {
-  background-color: #00B38F;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Survey - AI Trade Platform</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #0A0A0A;
+      color: #FFFFFF;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      border: 2px solid #00FFC6;
+      border-radius: 20px;
+      padding: 40px;
+      background-color: #0D0D0D;
+      box-shadow: 0 0 20px rgba(0, 255, 198, 0.2);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #00FFC6;
+    }
+    .question {
+      margin-bottom: 25px;
+    }
+    .question label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #00FFC6;
+      border-radius: 10px;
+      background-color: #0A0A0A;
+      color: #FFFFFF;
+      margin-top: 5px;
+    }
+    textarea {
+      min-height: 80px;
+    }
+    .checkbox-group,
+    .radio-group {
+      margin-top: 10px;
+    }
+    .checkbox-group label,
+    .radio-group label {
+      margin-right: 15px;
+      font-weight: normal;
+    }
+    button {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      border: 2px solid #00FFC6;
+      border-radius: 20px;
+      background-color: transparent;
+      color: #00FFC6;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 30px;
+    }
+    button:hover {
+      background-color: #00FFC6;
+      color: #0A0A0A;
+    }
+  </style>
 </head>
 <body>
-<div class="container">
-  <div class="form-card">
-    <h1>Tell Us About Yourself</h1>
-    <form action="#" method="post">
-      <label for="experience">How long have you been trading?</label>
-      <select id="experience" name="experience" required>
-        <option value="">Select one</option>
-        <option value="Less than 1 year">Less than 1 year</option>
-        <option value="1-3 years">1-3 years</option>
-        <option value="More than 3 years">More than 3 years</option>
-      </select>
+  <div class="container">
+    <h1>Welcome Survey</h1>
+    <form action="thankyou.html" method="get">
+      <!-- Trading Experience Question -->
+      <div class="question">
+        <label>How long have you been trading?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="experience" value="less_than_1" required> Less than 1 year</label>
+          <label><input type="radio" name="experience" value="1_3"> 1-3 years</label>
+          <label><input type="radio" name="experience" value="3_5"> 3-5 years</label>
+          <label><input type="radio" name="experience" value="5_plus"> 5+ years</label>
+        </div>
+      </div>
 
-      <label for="markets">Which markets are you familiar with?</label>
-      <input type="text" id="markets" name="markets" placeholder="e.g., Stocks, Options, Crypto">
+      <!-- Markets Question -->
+      <div class="question">
+        <label>Which markets do you trade? (select all that apply)</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="markets" value="stocks"> Stocks</label>
+          <label><input type="checkbox" name="markets" value="options"> Options</label>
+          <label><input type="checkbox" name="markets" value="cryptocurrency"> Cryptocurrency</label>
+          <label><input type="checkbox" name="markets" value="forex"> Forex</label>
+          <label><input type="checkbox" name="markets" value="futures"> Futures</label>
+        </div>
+      </div>
 
-      <label for="knowledge">What is your current knowledge level?</label>
-      <select id="knowledge" name="knowledge" required>
-        <option value="">Select one</option>
-        <option value="Beginner">Beginner</option>
-        <option value="Intermediate">Intermediate</option>
-        <option value="Advanced">Advanced</option>
-      </select>
+      <!-- Knowledge Question -->
+      <div class="question">
+        <label>What do you already know? (select all that apply)</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="knowledge" value="fundamentals"> Fundamentals</label>
+          <label><input type="checkbox" name="knowledge" value="technicals"> Technical Analysis</label>
+          <label><input type="checkbox" name="knowledge" value="options_trading"> Options Trading</label>
+          <label><input type="checkbox" name="knowledge" value="risk_management"> Risk Management</label>
+          <label><input type="checkbox" name="knowledge" value="none"> None</label>
+        </div>
+      </div>
 
-      <label for="goals">What do you hope to achieve with our platform?</label>
-      <textarea id="goals" name="goals" placeholder="Describe your goals..."></textarea>
+      <!-- Goals Question -->
+      <div class="question">
+        <label>What are you hoping to gain from this site?</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="goals" value="signals"> Trading signals</label>
+          <label><input type="checkbox" name="goals" value="education"> Educational content</label>
+          <label><input type="checkbox" name="goals" value="tools"> Tools & calculators</label>
+          <label><input type="checkbox" name="goals" value="community"> Community/support</label>
+        </div>
+      </div>
 
-      <input type="submit" value="Submit">
+      <!-- Frequency Question -->
+      <div class="question">
+        <label>How often do you plan to trade?</label>
+        <select name="frequency" required>
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+          <option value="monthly">Monthly</option>
+          <option value="rarely">Rarely</option>
+        </select>
+      </div>
+
+      <!-- Risk tolerance Question -->
+      <div class="question">
+        <label>What is your risk tolerance?</label>
+        <select name="risk_tolerance" required>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+      </div>
+
+      <!-- Comments Question -->
+      <div class="question">
+        <label>Anything else you'd like us to know?</label>
+        <textarea name="comments" placeholder="Tell us more about your goals and interests..."></textarea>
+      </div>
+
+      <button type="submit">Submit Survey</button>
     </form>
   </div>
-</div>
 </body>
 </html>
