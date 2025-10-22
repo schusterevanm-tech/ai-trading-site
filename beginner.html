@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beginner Dashboard - AI Trade Platform</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #0A0A0A;
+      color: #FFFFFF;
+      line-height: 1.5;
+    }
+    .section {
+      padding: 80px 20px;
+      text-align: center;
+    }
+    .hero {
+      padding: 120px 20px;
+      background-color: #0D0D0D;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #00FFC6;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 650px;
+      margin: 0 auto 40px;
+      color: #AAAAAA;
+    }
+    a.button {
+      display: inline-block;
+      padding: 15px 30px;
+      border: 2px solid #00FFC6;
+      border-radius: 25px;
+      color: #00FFC6;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    a.button:hover {
+      background: #00FFC6;
+      color: #0A0A0A;
+    }
+    .cards-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 40px;
+    }
+    .card {
+      width: 280px;
+      padding: 20px;
+      border: 2px solid #00FFC6;
+      border-radius: 20px;
+      background-color: #0D0D0D;
+      text-align: left;
+      color: #FFFFFF;
+    }
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 1.4rem;
+      color: #00FFC6;
+    }
+    .card p {
+      font-size: 0.9rem;
+      color: #AAAAAA;
+    }
+    @media (max-width: 900px) {
+      .cards-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .card {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <section class="hero section">
+    <h1>Welcome, Beginner Trader</h1>
+    <p>Start with simplified strategies and easy-to-understand lessons tailored to new traders. Our platform guides you through fundamentals, risk management, and simple technical signals.</p>
+    <a href="index.html#learn" class="button">Explore Beginner Lessons</a>
+  </section>
+
+  <!-- Beginner Signals Section -->
+  <section class="section">
+    <h2>Today's Signals for Beginners</h2>
+    <p>These signals are curated for new traders looking for straightforward opportunities.</p>
+    <div class="cards-container">
+      <div class="card">
+        <h3>AAPL Trend</h3>
+        <p>Apple is maintaining a steady uptrend above its 20-day moving average with moderate volume. Consider a small position to follow the trend.</p>
+      </div>
+      <div class="card">
+        <h3>MSFT Pullback</h3>
+        <p>Microsoft is pulling back to a key support zone. Watch for a bounce before entering. Manage your risk carefully.</p>
+      </div>
+      <div class="card">
+        <h3>ETF Focus</h3>
+        <p>Look at broad market ETFs like SPY or QQQ for diversified exposure with lower volatility. Stick to your trading plan.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recommended Resources Section -->
+  <section class="section">
+    <h2>Recommended Beginner Resources</h2>
+    <p>Build your foundation with these introductory materials.</p>
+    <div class="cards-container">
+      <div class="card">
+        <h3>Understanding Earnings</h3>
+        <p>Learn what earnings reports are, how to read them, and how they affect stock prices.</p>
+      </div>
+      <div class="card">
+        <h3>Basic Technical Indicators</h3>
+        <p>Get comfortable with simple indicators like moving averages and support/resistance.</p>
+      </div>
+      <div class="card">
+        <h3>Risk Management</h3>
+        <p>Discover the importance of position sizing, stop losses, and managing emotional discipline.</p>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

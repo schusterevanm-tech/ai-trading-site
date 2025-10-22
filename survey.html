@@ -81,7 +81,10 @@
 <body>
   <div class="container">
     <h1>Welcome Survey</h1>
-    <form action="thankyou.html" method="get">
+    <!-- The survey now uses JavaScript to process the answers and
+         redirect users to a tailored dashboard.  We removed the
+         comments field to streamline the onboarding experience. -->
+    <form onsubmit="processForm(event)">
       <!-- Trading Experience Question -->
       <div class="question">
         <label>How long have you been trading?</label>
@@ -149,14 +152,35 @@
         </select>
       </div>
 
-      <!-- Comments Question -->
-      <div class="question">
-        <label>Anything else you'd like us to know?</label>
-        <textarea name="comments" placeholder="Tell us more about your goals and interests..."></textarea>
-      </div>
-
-      <button type="submit">Submit Survey</button>
+      <button type="submit">Continue</button>
     </form>
+    <!-- JavaScript to determine the user's experience level and
+         redirect them to the appropriate dashboard based on their
+         answers.  Users with extensive experience, high risk
+         tolerance or options trading knowledge are considered
+         advanced and directed to advanced.html.  Others are routed
+         to beginner.html. -->
+    <script>
+      function processForm(event) {
+        event.preventDefault();
+        // Get selected trading experience value
+        const experienceEl = document.querySelector('input[name="experience"]:checked');
+        const experience = experienceEl ? experienceEl.value : '';
+        // Get selected knowledge values (array of strings)
+        const knowledgeEls = document.querySelectorAll('input[name="knowledge"]:checked');
+        const knowledgeValues = Array.from(knowledgeEls).map(el => el.value);
+        // Get risk tolerance
+        const risk = document.querySelector('select[name="risk_tolerance"]').value;
+        // Determine if user is advanced: >5 years, has options trading
+        // knowledge, or high risk tolerance.
+        let userType = 'beginner';
+        if (experience === '5_plus' || knowledgeValues.includes('options_trading') || risk === 'high') {
+          userType = 'advanced';
+        }
+        // Redirect to the appropriate page
+        window.location.href = userType + '.html';
+      }
+    </script>
   </div>
 </body>
 </html>
