@@ -23,40 +23,49 @@
     }
     h1 {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 15px;
       color: #00FFC6;
     }
-    .question {
-      margin-bottom: 25px;
+    p.intro {
+      text-align: center;
+      color: #AAAAAA;
+      margin-bottom: 30px;
     }
-    .question label {
+    .levels {
+      display: grid;
+      gap: 20px;
+    }
+    .level-card {
       display: block;
-      margin-bottom: 8px;
-      font-weight: bold;
+      border: 2px solid #00FFC6;
+      border-radius: 16px;
+      padding: 20px;
+      background: #0A0A0A;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
-    input[type="text"],
-    input[type="number"],
-    select,
-    textarea {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #00FFC6;
-      border-radius: 10px;
-      background-color: #0A0A0A;
-      color: #FFFFFF;
-      margin-top: 5px;
+    .level-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 20px rgba(0, 255, 198, 0.15);
+      border-color: #33FFD6;
     }
-    textarea {
-      min-height: 80px;
+    .level-card input {
+      display: none;
     }
-    .checkbox-group,
-    .radio-group {
-      margin-top: 10px;
+    .level-card h3 {
+      margin-top: 0;
+      color: #00FFC6;
+      margin-bottom: 10px;
     }
-    .checkbox-group label,
-    .radio-group label {
-      margin-right: 15px;
-      font-weight: normal;
+    .level-card p {
+      margin: 0;
+      color: #CCCCCC;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .level-card.selected {
+      border-color: #FFFFFF;
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
     }
     button {
       display: block;
@@ -76,8 +85,6 @@
       background-color: #00FFC6;
       color: #0A0A0A;
     }
-
-    /* Navigation Bar */
     .nav-bar {
       background-color: #0D0D0D;
       padding: 20px 20px;
@@ -91,12 +98,22 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
     }
-    .nav-container a {
+    .nav-container nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .nav-container nav a {
       color: #00FFC6;
-      margin-left: 20px;
       text-decoration: none;
       font-size: 1rem;
+    }
+    .nav-container nav a:hover {
+      text-decoration: underline;
     }
     .nav-container a.logo {
       margin-left: 0;
@@ -104,10 +121,25 @@
       font-size: 1.5rem;
       font-weight: bold;
     }
-    .nav-container a:hover {
-      text-decoration: underline;
+    .nav-container .button {
+      padding: 12px 24px;
+      border: 2px solid #00FFC6;
+      border-radius: 24px;
     }
-    /* Footer */
+    a.button {
+      display: inline-block;
+      padding: 12px 24px;
+      border: 2px solid #00FFC6;
+      border-radius: 20px;
+      color: #00FFC6;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    a.button:hover {
+      background-color: #00FFC6;
+      color: #0A0A0A;
+    }
     .footer {
       background-color: #0D0D0D;
       font-size: 0.8rem;
@@ -115,128 +147,70 @@
       padding: 20px;
       text-align: center;
     }
+    @media (max-width: 640px) {
+      .container {
+        padding: 28px;
+      }
+    }
   </style>
 </head>
 <body>
-  <!-- Navigation Bar -->
   <header class="nav-bar">
     <div class="nav-container">
       <a href="index.html" class="logo">AI Trade Edge</a>
       <nav>
         <a href="index.html#picks">AI Picks</a>
+        <a href="index.html#paths">Trader Paths</a>
         <a href="index.html#learn">Learn</a>
+        <a href="tradebot.html">TradeBot</a>
+        <a href="survey.html">Survey</a>
         <a href="faq.html">FAQs</a>
         <a href="login.html" class="button">Login</a>
       </nav>
     </div>
   </header>
   <div class="container">
-    <h1>Welcome Survey</h1>
-    <!-- The survey now uses JavaScript to process the answers and
-         redirect users to a tailored dashboard.  We removed the
-         comments field to streamline the onboarding experience. -->
+    <h1>Find Your Path</h1>
+    <p class="intro">Choose the trading profile that fits you best. We’ll route you to a tailored space where you can explore AI trade signals, educational content, and chat with TradeBot for guidance.</p>
     <form onsubmit="processForm(event)">
-      <!-- Trading Experience Question -->
-      <div class="question">
-        <label>How long have you been trading?</label>
-        <div class="radio-group">
-          <label><input type="radio" name="experience" value="less_than_1" required> Less than 1 year</label>
-          <label><input type="radio" name="experience" value="1_3"> 1-3 years</label>
-          <label><input type="radio" name="experience" value="3_5"> 3-5 years</label>
-          <label><input type="radio" name="experience" value="5_plus"> 5+ years</label>
-        </div>
+      <div class="levels" id="levels">
+        <label class="level-card">
+          <input type="radio" name="profile" value="beginner" required>
+          <h3>Beginner Trader</h3>
+          <p>New to markets or still building confidence? We’ll start you with easy wins, core lessons, and TradeBot tips for first-time traders.</p>
+        </label>
+        <label class="level-card">
+          <input type="radio" name="profile" value="intermediate" required>
+          <h3>Intermediate Trader</h3>
+          <p>Comfortable placing trades and reading charts? See momentum-focused signals, deepen your strategy library, and ask TradeBot for quick market checks.</p>
+        </label>
+        <label class="level-card">
+          <input type="radio" name="profile" value="advanced" required>
+          <h3>Advanced Trader</h3>
+          <p>Seasoned operator looking for an edge? Access complex setups, macro briefings, and direct TradeBot prompts for nuanced scenarios.</p>
+        </label>
       </div>
-
-      <!-- Markets Question -->
-      <div class="question">
-        <label>Which markets do you trade? (select all that apply)</label>
-        <div class="checkbox-group">
-          <label><input type="checkbox" name="markets" value="stocks"> Stocks</label>
-          <label><input type="checkbox" name="markets" value="options"> Options</label>
-          <label><input type="checkbox" name="markets" value="cryptocurrency"> Cryptocurrency</label>
-          <label><input type="checkbox" name="markets" value="forex"> Forex</label>
-          <label><input type="checkbox" name="markets" value="futures"> Futures</label>
-        </div>
-      </div>
-
-      <!-- Knowledge Question -->
-      <div class="question">
-        <label>What do you already know? (select all that apply)</label>
-        <div class="checkbox-group">
-          <label><input type="checkbox" name="knowledge" value="fundamentals"> Fundamentals</label>
-          <label><input type="checkbox" name="knowledge" value="technicals"> Technical Analysis</label>
-          <label><input type="checkbox" name="knowledge" value="options_trading"> Options Trading</label>
-          <label><input type="checkbox" name="knowledge" value="risk_management"> Risk Management</label>
-          <label><input type="checkbox" name="knowledge" value="none"> None</label>
-        </div>
-      </div>
-
-      <!-- Goals Question -->
-      <div class="question">
-        <label>What are you hoping to gain from this site?</label>
-        <div class="checkbox-group">
-          <label><input type="checkbox" name="goals" value="signals"> Trading signals</label>
-          <label><input type="checkbox" name="goals" value="education"> Educational content</label>
-          <label><input type="checkbox" name="goals" value="tools"> Tools & calculators</label>
-          <label><input type="checkbox" name="goals" value="community"> Community/support</label>
-        </div>
-      </div>
-
-      <!-- Frequency Question -->
-      <div class="question">
-        <label>How often do you plan to trade?</label>
-        <select name="frequency" required>
-          <option value="daily">Daily</option>
-          <option value="weekly">Weekly</option>
-          <option value="monthly">Monthly</option>
-          <option value="rarely">Rarely</option>
-        </select>
-      </div>
-
-      <!-- Risk tolerance Question -->
-      <div class="question">
-        <label>What is your risk tolerance?</label>
-        <select name="risk_tolerance" required>
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
-        </select>
-      </div>
-
-      <button type="submit">Continue</button>
+      <button type="submit">Continue to Your Dashboard</button>
     </form>
-    <!-- JavaScript to determine the user's experience level and
-         redirect them to the appropriate dashboard based on their
-         answers.  Users with extensive experience, high risk
-         tolerance or options trading knowledge are considered
-         advanced and directed to advanced.html.  Others are routed
-         to beginner.html. -->
-    <script>
-      function processForm(event) {
-        event.preventDefault();
-        // Get selected trading experience value
-        const experienceEl = document.querySelector('input[name="experience"]:checked');
-        const experience = experienceEl ? experienceEl.value : '';
-        // Get selected knowledge values (array of strings)
-        const knowledgeEls = document.querySelectorAll('input[name="knowledge"]:checked');
-        const knowledgeValues = Array.from(knowledgeEls).map(el => el.value);
-        // Get risk tolerance
-        const risk = document.querySelector('select[name="risk_tolerance"]').value;
-        // Determine if user is advanced: >5 years, has options trading
-        // knowledge, or high risk tolerance.
-        let userType = 'beginner';
-        if (experience === '5_plus' || knowledgeValues.includes('options_trading') || risk === 'high') {
-          userType = 'advanced';
-        }
-        // Redirect to the appropriate page
-        window.location.href = userType + '.html';
-      }
-    </script>
   </div>
-
-  <!-- Footer -->
   <footer class="footer">
     <p>&copy; 2025 AI Trade Platform. All rights reserved.</p>
   </footer>
+  <script>
+    const levelCards = document.querySelectorAll('.level-card');
+    levelCards.forEach(card => {
+      card.addEventListener('click', () => {
+        levelCards.forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+      });
+    });
+
+    function processForm(event) {
+      event.preventDefault();
+      const selected = document.querySelector('input[name="profile"]:checked');
+      if (!selected) return;
+      window.location.href = selected.value + '.html';
+    }
+  </script>
 </body>
 </html>
