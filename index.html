@@ -20,6 +20,41 @@
       padding: 120px 20px;
       background-color: #0D0D0D;
     }
+    /* Hero layout */
+    .hero-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+    .hero-content {
+      flex: 1;
+      max-width: 600px;
+      text-align: left;
+      padding: 20px;
+    }
+    .hero-image {
+      flex: 1;
+      max-width: 500px;
+      padding: 20px;
+    }
+    .hero-image img {
+      width: 100%;
+      border-radius: 20px;
+    }
+    @media (max-width: 900px) {
+      .hero-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero-content, .hero-image {
+        max-width: 100%;
+        text-align: center;
+        padding: 10px 0;
+      }
+    }
     .hero h1 {
       font-size: 3rem;
       margin-bottom: 20px;
@@ -191,9 +226,16 @@
 <body>
   <!-- Hero Section -->
   <section class="hero section">
-    <h1>Unlock Your Trading Edge with AI</h1>
-    <p>Discover intelligent signals, tailored education, and proven strategies that help you trade smarter—no more guesswork.</p>
-    <a href="signup.html" class="button">Get Started Free</a>
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1>Unlock Your Trading Edge with AI</h1>
+        <p>Discover intelligent signals, tailored education, and proven strategies that help you trade smarter—no more guesswork.</p>
+        <a href="signup.html" class="button">Get Started Free</a>
+      </div>
+      <div class="hero-image">
+        <img src="hero-chart.png" alt="Stock market chart illustration">
+      </div>
+    </div>
   </section>
 
   <!-- Today's AI Picks Section -->
