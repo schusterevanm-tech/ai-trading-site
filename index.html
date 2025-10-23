@@ -124,6 +124,59 @@
       color: #AAAAAA;
       font-size: 0.9rem;
     }
+    /* Why Section */
+    .why-section {
+      background-color: #0A0A0A;
+    }
+    .why-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #00FFC6;
+    }
+    .why-section p {
+      font-size: 1.1rem;
+      color: #AAAAAA;
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+    .feature-card {
+      width: 280px;
+      padding: 20px;
+      border: 2px solid #00FFC6;
+      border-radius: 20px;
+      background-color: #0D0D0D;
+      text-align: left;
+      color: #FFFFFF;
+    }
+    .feature-card h3 {
+      margin-bottom: 8px;
+      font-size: 1.4rem;
+      color: #00FFC6;
+    }
+    .feature-card p {
+      color: #AAAAAA;
+      font-size: 0.9rem;
+    }
+    /* CTA Section */
+    .cta-section {
+      background-color: #0D0D0D;
+    }
+    .cta-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    .cta-section p {
+      font-size: 1.1rem;
+      color: #AAAAAA;
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+    /* Footer */
+    .footer {
+      background-color: #0D0D0D;
+      font-size: 0.8rem;
+      color: #666666;
+    }
     @media (max-width: 900px) {
       .cards-container {
         flex-direction: column;
@@ -138,9 +191,9 @@
 <body>
   <!-- Hero Section -->
   <section class="hero section">
-    <h1>Trade Smarter with AI</h1>
-    <p>Live signals, simple lessons, and powerful tools to help you master options and stocks without guesswork.</p>
-    <a href="#picks" class="button">Explore Today's Signals</a>
+    <h1>Unlock Your Trading Edge with AI</h1>
+    <p>Discover intelligent signals, tailored education, and proven strategies that help you trade smarter—no more guesswork.</p>
+    <a href="signup.html" class="button">Get Started Free</a>
   </section>
 
   <!-- Today's AI Picks Section -->
@@ -214,6 +267,38 @@
     <a href="signup.html" class="button">Start Learning</a>
     </div>
   </section>
+
+  <!-- Why AI Trade Edge Section -->
+  <section class="section why-section">
+    <h2>Why AI Trade Edge?</h2>
+    <p>Experience the difference of real-time AI signals, personalized education, and actionable insights—all designed to help you trade smarter and grow faster.</p>
+    <div class="cards-container">
+      <div class="feature-card">
+        <h3>Real-Time AI Signals</h3>
+        <p>Our algorithms scan the markets around the clock to uncover high-probability opportunities before the crowd.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Personalized Learning</h3>
+        <p>Get custom lessons and dashboards tailored to your experience level, goals, and risk appetite.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Actionable Insights</h3>
+        <p>We provide clear explanations and next steps so you can act with confidence and improve continually.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call-To-Action Section -->
+  <section class="section cta-section">
+    <h2>Ready to Elevate Your Trading?</h2>
+    <p>Join AI Trade Edge today and unlock your personalized trading journey.</p>
+    <a href="signup.html" class="button">Get Started Free</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer section">
+    <p>&copy; 2025 AI Trade Platform. All rights reserved.</p>
+  </footer>
 
   <script>
     document.querySelectorAll('a[href^="#"]').forEach(link => {
