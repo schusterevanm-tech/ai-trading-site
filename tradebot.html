@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TradeBot Assistant - AI Trade Platform</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #0A0A0A;
+      color: #FFFFFF;
+      line-height: 1.5;
+    }
+    .nav-bar {
+      background-color: #0D0D0D;
+      padding: 20px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .nav-container nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .nav-container nav a {
+      color: #00FFC6;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .nav-container nav a:hover {
+      text-decoration: underline;
+    }
+    .nav-container a.logo {
+      margin-left: 0;
+      color: #00FFC6;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .nav-container .button {
+      padding: 12px 24px;
+      border: 2px solid #00FFC6;
+      border-radius: 24px;
+    }
+    a.button {
+      display: inline-block;
+      padding: 12px 24px;
+      border: 2px solid #00FFC6;
+      border-radius: 20px;
+      color: #00FFC6;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    a.button:hover {
+      background: #00FFC6;
+      color: #0A0A0A;
+    }
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px 80px;
+    }
+    h1 {
+      color: #00FFC6;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    p.subtitle {
+      text-align: center;
+      color: #AAAAAA;
+      margin-bottom: 40px;
+    }
+    .chat-container {
+      background: #0D0D0D;
+      border: 2px solid #00FFC6;
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 0 20px rgba(0, 255, 198, 0.2);
+    }
+    .messages {
+      max-height: 400px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .message {
+      padding: 14px 18px;
+      border-radius: 16px;
+      max-width: 85%;
+      line-height: 1.4;
+      font-size: 0.95rem;
+    }
+    .message.user {
+      margin-left: auto;
+      background: #00FFC6;
+      color: #0A0A0A;
+    }
+    .message.bot {
+      margin-right: auto;
+      background: #111111;
+      border: 1px solid rgba(0, 255, 198, 0.3);
+    }
+    form {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    input[type="text"] {
+      flex: 1 1 240px;
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid #00FFC6;
+      background: #0A0A0A;
+      color: #FFFFFF;
+    }
+    button {
+      padding: 14px 24px;
+      border-radius: 16px;
+      border: 2px solid #00FFC6;
+      background: transparent;
+      color: #00FFC6;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      background: #00FFC6;
+      color: #0A0A0A;
+    }
+    .quick-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .quick-actions button {
+      flex: 1 1 200px;
+      font-size: 0.9rem;
+    }
+    .footer {
+      background-color: #0D0D0D;
+      font-size: 0.8rem;
+      color: #666666;
+      padding: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header class="nav-bar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">AI Trade Edge</a>
+      <nav>
+        <a href="index.html#picks">AI Picks</a>
+        <a href="index.html#paths">Trader Paths</a>
+        <a href="index.html#learn">Learn</a>
+        <a href="tradebot.html">TradeBot</a>
+        <a href="survey.html">Survey</a>
+        <a href="faq.html">FAQs</a>
+        <a href="login.html" class="button">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1>TradeBot Assistant</h1>
+    <p class="subtitle">Ask anything about navigating the platform, understanding indicators, or deciding what to explore next. TradeBot responds instantly with curated resources.</p>
+
+    <div class="chat-container">
+      <div class="messages" id="messages"></div>
+      <div class="quick-actions">
+        <button type="button" data-message="Show me today's AI signals">AI Signals</button>
+        <button type="button" data-message="Where should I learn more about the market?">Learning Path</button>
+        <button type="button" data-message="Help me navigate the site">Navigation Help</button>
+      </div>
+      <form id="chat-form">
+        <input type="text" id="user-input" placeholder="Type your question..." required autocomplete="off" />
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 AI Trade Platform. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const messagesEl = document.getElementById('messages');
+    const form = document.getElementById('chat-form');
+    const input = document.getElementById('user-input');
+    const quickActionButtons = document.querySelectorAll('.quick-actions button');
+
+    const params = new URLSearchParams(window.location.search);
+    const level = params.get('level') || 'trader';
+
+    const greetings = {
+      beginner: 'Hi there! I can walk you through the basics, share friendly signals, or point you to lessons when you are ready.',
+      intermediate: 'Welcome back! Want fresh signals, strategy refreshers, or a quick navigation hint? I have you covered.',
+      advanced: 'Good to see you! Ask for advanced screeners, macro context, or shortcuts to the analytics you need.',
+      trader: 'Hello! Ask me for AI signals, lessons, or anything else and I will send you there.'
+    };
+
+    const responders = [
+      {
+        test: /signal|setup|pick/i,
+        reply: 'Here are the AI trade signals. Head to the <a href="index.html#picks">AI Picks section</a> for live updates.'
+      },
+      {
+        test: /learn|lesson|education|market/i,
+        reply: 'If you are studying, the <a href="index.html#learn">Learning hub</a> plus our <a href="fundamentals.html">fundamentals</a> and <a href="technicals.html">technicals</a> pages are perfect starting points.'
+      },
+      {
+        test: /navigate|where|find|go|help/i,
+        reply: 'Need directions? Use the navigation bar above or jump to the <a href="survey.html">survey</a> to adjust your dashboard. I can also open the <a href="faq.html">FAQ</a> for quick answers.'
+      },
+      {
+        test: /options|volatility|advanced/i,
+        reply: 'For deeper dives into complex strategies, check out the <a href="advanced.html">Advanced dashboard</a> and the <a href="options.html">options playbook</a>.'
+      },
+      {
+        test: /beginner|new/i,
+        reply: 'Starting out? The <a href="beginner.html">Beginner dashboard</a> and <a href="fundamentals.html">Fundamentals</a> guide will ease you in.'
+      }
+    ];
+
+    function appendMessage(text, sender = 'bot') {
+      const message = document.createElement('div');
+      message.className = `message ${sender}`;
+      message.innerHTML = text;
+      messagesEl.appendChild(message);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    function handleUserMessage(text) {
+      appendMessage(text, 'user');
+      const responder = responders.find(r => r.test.test(text));
+      const reply = responder
+        ? responder.reply
+        : 'I am here to help with signals, learning paths, or navigation. Try asking for AI signals or where to learn more.';
+      setTimeout(() => appendMessage(reply, 'bot'), 250);
+    }
+
+    appendMessage(greetings[level] || greetings.trader, 'bot');
+
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      const text = input.value.trim();
+      if (!text) {
+        return;
+      }
+      handleUserMessage(text);
+      input.value = '';
+      input.focus();
+    });
+
+    quickActionButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const preset = button.dataset.message;
+        input.value = '';
+        handleUserMessage(preset);
+      });
+    });
+  </script>
+</body>
+</html>

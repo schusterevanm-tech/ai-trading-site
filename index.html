@@ -227,12 +227,22 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
     }
-    .nav-container a {
+    .nav-container nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .nav-container nav a {
       color: #00FFC6;
-      margin-left: 20px;
       text-decoration: none;
       font-size: 1rem;
+    }
+    .nav-container nav a:hover {
+      text-decoration: underline;
     }
     .nav-container a.logo {
       margin-left: 0;
@@ -240,8 +250,10 @@
       font-size: 1.5rem;
       font-weight: bold;
     }
-    .nav-container a:hover {
-      text-decoration: underline;
+    .nav-container .button {
+      padding: 12px 24px;
+      border: 2px solid #00FFC6;
+      border-radius: 24px;
     }
     @media (max-width: 900px) {
       .cards-container {
@@ -261,7 +273,10 @@
       <a href="index.html" class="logo">AI Trade Edge</a>
       <nav>
         <a href="#picks">AI Picks</a>
+        <a href="#paths">Trader Paths</a>
         <a href="#learn">Learn</a>
+        <a href="tradebot.html">TradeBot</a>
+        <a href="survey.html">Survey</a>
         <a href="faq.html">FAQs</a>
         <a href="login.html" class="button">Login</a>
       </nav>
@@ -273,10 +288,38 @@
       <div class="hero-content">
         <h1>Unlock Your Trading Edge with AI</h1>
         <p>Discover intelligent signals, tailored education, and proven strategies that help you trade smarter—no more guesswork.</p>
-        <a href="signup.html" class="button">Get Started Free</a>
+        <a href="survey.html" class="button">Find Your Trader Path</a>
       </div>
       <div class="hero-image">
         <img src="hero-chart.png" alt="Stock market chart illustration">
+      </div>
+    </div>
+  </section>
+
+  <!-- Trader Path Section -->
+  <section class="section cta-section" id="paths">
+    <h2>Choose Your Trader Path</h2>
+    <p>Start with the experience that matches your skill level. Each path bundles AI trade signals, focused learning tracks, and a direct line to TradeBot support.</p>
+    <div class="cards-container">
+      <div class="card">
+        <h2>Beginner Trader</h2>
+        <p>Build core confidence with simplified signals, foundational lessons, and TradeBot tips for first-time traders.</p>
+        <a class="button" href="beginner.html">Enter Beginner Dashboard</a>
+      </div>
+      <div class="card">
+        <h2>Intermediate Trader</h2>
+        <p>Level up with momentum ideas, tactical education modules, and rapid TradeBot prompts for fast decision-making.</p>
+        <a class="button" href="intermediate.html">Open Intermediate Dashboard</a>
+      </div>
+      <div class="card">
+        <h2>Advanced Trader</h2>
+        <p>Explore complex, multi-factor trade setups, macro briefings, and expert TradeBot scenarios tailored to veterans.</p>
+        <a class="button" href="advanced.html">Visit Advanced Dashboard</a>
+      </div>
+      <div class="card">
+        <h2>Meet TradeBot</h2>
+        <p>Ask navigation questions, get instant market context, or request curated resources across the entire platform.</p>
+        <a class="button" href="tradebot.html">Chat with TradeBot</a>
       </div>
     </div>
   </section>

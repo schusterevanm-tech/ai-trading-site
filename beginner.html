@@ -31,9 +31,39 @@
       margin: 0 auto 40px;
       color: #AAAAAA;
     }
-    a.button {
+    .cta-grid {
+      display: grid;
+      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      margin-top: 40px;
+    }
+    .card {
+      padding: 24px;
+      border: 2px solid #00FFC6;
+      border-radius: 20px;
+      background-color: #0D0D0D;
+      text-align: left;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 24px rgba(0, 255, 198, 0.18);
+      border-color: #33FFD6;
+    }
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 1.4rem;
+      color: #00FFC6;
+    }
+    .card p {
+      font-size: 0.95rem;
+      color: #CCCCCC;
+      margin-bottom: 16px;
+    }
+    a.button, .card a {
       display: inline-block;
-      padding: 15px 30px;
+      padding: 14px 28px;
       border: 2px solid #00FFC6;
       border-radius: 25px;
       color: #00FFC6;
@@ -41,37 +71,10 @@
       font-weight: bold;
       transition: all 0.3s ease;
     }
-    a.button:hover {
+    a.button:hover, .card a:hover {
       background: #00FFC6;
       color: #0A0A0A;
     }
-    .cards-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 40px;
-      margin-top: 40px;
-    }
-    .card {
-      width: 280px;
-      padding: 20px;
-      border: 2px solid #00FFC6;
-      border-radius: 20px;
-      background-color: #0D0D0D;
-      text-align: left;
-      color: #FFFFFF;
-    }
-    .card h3 {
-      margin-bottom: 10px;
-      font-size: 1.4rem;
-      color: #00FFC6;
-    }
-    .card p {
-      font-size: 0.9rem;
-      color: #AAAAAA;
-    }
-
-    /* Navigation Bar */
     .nav-bar {
       background-color: #0D0D0D;
       padding: 20px 20px;
@@ -85,12 +88,22 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
     }
-    .nav-container a {
+    .nav-container nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .nav-container nav a {
       color: #00FFC6;
-      margin-left: 20px;
       text-decoration: none;
       font-size: 1rem;
+    }
+    .nav-container nav a:hover {
+      text-decoration: underline;
     }
     .nav-container a.logo {
       margin-left: 0;
@@ -98,11 +111,11 @@
       font-size: 1.5rem;
       font-weight: bold;
     }
-    .nav-container a:hover {
-      text-decoration: underline;
+    .nav-container .button {
+      padding: 12px 24px;
+      border: 2px solid #00FFC6;
+      border-radius: 24px;
     }
-
-    /* Footer */
     .footer {
       background-color: #0D0D0D;
       font-size: 0.8rem;
@@ -111,78 +124,57 @@
       text-align: center;
     }
     @media (max-width: 900px) {
-      .cards-container {
-        flex-direction: column;
-        align-items: center;
-      }
       .card {
-        width: 90%;
+        text-align: left;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Navigation Bar -->
   <header class="nav-bar">
     <div class="nav-container">
       <a href="index.html" class="logo">AI Trade Edge</a>
       <nav>
         <a href="index.html#picks">AI Picks</a>
+        <a href="index.html#paths">Trader Paths</a>
         <a href="index.html#learn">Learn</a>
+        <a href="tradebot.html">TradeBot</a>
+        <a href="survey.html">Survey</a>
         <a href="faq.html">FAQs</a>
         <a href="login.html" class="button">Login</a>
       </nav>
     </div>
   </header>
-  <!-- Hero Section -->
+
   <section class="hero section">
     <h1>Welcome, Beginner Trader</h1>
-    <p>Start with simplified strategies and easy-to-understand lessons tailored to new traders. Our platform guides you through fundamentals, risk management, and simple technical signals.</p>
-    <a href="index.html#learn" class="button">Explore Beginner Lessons</a>
+    <p>Start with simplified strategies and foundational lessons. These resources are curated to build your confidence while TradeBot keeps you oriented and answers quick questions.</p>
+    <a href="index.html#learn" class="button">Start Learning the Basics</a>
   </section>
 
-  <!-- Beginner Signals Section -->
   <section class="section">
-    <h2>Today's Signals for Beginners</h2>
-    <p>These signals are curated for new traders looking for straightforward opportunities.</p>
-    <div class="cards-container">
+    <h2>Your Next Steps</h2>
+    <p>Everything here is designed for brand-new traders. Pick where you’d like to dive in first.</p>
+    <div class="cta-grid">
       <div class="card">
-        <h3>AAPL Trend</h3>
-        <p>Apple is maintaining a steady uptrend above its 20-day moving average with moderate volume. Consider a small position to follow the trend.</p>
+        <h3>View AI Trade Signals</h3>
+        <p>See easy-to-follow opportunities with simple risk guidelines and plain-language explanations.</p>
+        <a href="index.html#picks">Go to AI Picks</a>
       </div>
       <div class="card">
-        <h3>MSFT Pullback</h3>
-        <p>Microsoft is pulling back to a key support zone. Watch for a bounce before entering. Manage your risk carefully.</p>
+        <h3>Learn About the Market</h3>
+        <p>Work through our beginner curriculum covering market structure, order types, and risk management.</p>
+        <a href="fundamentals.html">Explore Lessons</a>
       </div>
       <div class="card">
-        <h3>ETF Focus</h3>
-        <p>Look at broad market ETFs like SPY or QQQ for diversified exposure with lower volatility. Stick to your trading plan.</p>
+        <h3>Talk to TradeBot</h3>
+        <p>Ask questions about terminology, navigation, or what to study next and get instant guidance.</p>
+        <a href="tradebot.html?level=beginner">Chat with TradeBot</a>
       </div>
     </div>
   </section>
 
-  <!-- Recommended Resources Section -->
-  <section class="section">
-    <h2>Recommended Beginner Resources</h2>
-    <p>Build your foundation with these introductory materials.</p>
-    <div class="cards-container">
-      <div class="card">
-        <h3>Understanding Earnings</h3>
-        <p>Learn what earnings reports are, how to read them, and how they affect stock prices.</p>
-      </div>
-      <div class="card">
-        <h3>Basic Technical Indicators</h3>
-        <p>Get comfortable with simple indicators like moving averages and support/resistance.</p>
-      </div>
-      <div class="card">
-        <h3>Risk Management</h3>
-        <p>Discover the importance of position sizing, stop losses, and managing emotional discipline.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer section">
+  <footer class="footer">
     <p>&copy; 2025 AI Trade Platform. All rights reserved.</p>
   </footer>
 </body>
