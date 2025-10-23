@@ -285,27 +285,10 @@
   <section class="section" id="picks">
     <h2>Today's AI Picks</h2>
     <p>Get daily insights on high-probability setups.</p>
-    <div class="cards-container">
-      <!-- NVDA Card -->
-      <div class="card">
-        <h2>NVDA Breakout</h2>
-        <div class="percentage">81%</div>
-        <p>Price above SMA50 with volume increase.</p>
-        <div class="chart"></div>
-      </div>
-      <!-- SPY Card -->
-      <div class="card">
-        <h2>SPY Reversal</h2>
-        <div class="percentage">68%</div>
-        <p>Momentum slowing under resistance zone.</p>
-        <div class="chart"></div>
-      </div>
-      <!-- TSLA Card -->
-      <div class="card">
-        <h2>TSLA Momentum</h2>
-        <div class="percentage">85%</div>
-        <p>Strong uptrend with rising volume.</p>
-        <div class="chart"></div>
+    <div class="cards-container" id="picks-container">
+      <div class="card" id="picks-loading-card">
+        <h2>Loading signals…</h2>
+        <p>Please wait while we pull the latest multi-factor data.</p>
       </div>
     </div>
   </section>
@@ -431,15 +414,101 @@
   </footer>
 
   <script>
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', function(e) {
+    const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
+    smoothScrollLinks.forEach((link) => {
+      link.addEventListener('click', function handleSmoothScroll(event) {
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-          e.preventDefault();
+          event.preventDefault();
           target.scrollIntoView({ behavior: 'smooth' });
         }
       });
     });
+
+    const picksContainer = document.getElementById('picks-container');
+    const REFRESH_MS = (Number(document.body.dataset.refreshMs) || 300000);
+
+    function signalToEmoji(signal) {
+      if (signal == null || Number.isNaN(signal)) {
+        return '•';
+      }
+      if (signal > 0.35) return '📈';
+      if (signal < -0.35) return '📉';
+      return '➖';
+    }
+
+    function formatScore(score) {
+      const bounded = Math.max(-1, Math.min(1, score ?? 0));
+      return Math.round(((bounded + 1) / 2) * 100);
+    }
+
+    function renderPicks(picks) {
+      if (!picksContainer) {
+        return;
+      }
+      picksContainer.innerHTML = '';
+      if (!picks || picks.length === 0) {
+        const empty = document.createElement('div');
+        empty.className = 'card';
+        empty.innerHTML = '<h2>No signals</h2><p>We could not compute any picks right now. Please try again later.</p>';
+        picksContainer.appendChild(empty);
+        return;
+      }
+
+      picks.forEach((pick) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        const score = formatScore(pick.score);
+        const price = pick.latestPrice != null ? `$${pick.latestPrice.toFixed(2)}` : 'n/a';
+
+        const indicatorList = document.createElement('ul');
+        indicatorList.style.listStyle = 'none';
+        indicatorList.style.padding = '0';
+        indicatorList.style.margin = '15px 0 0 0';
+
+        (pick.details || []).forEach((detail) => {
+          const item = document.createElement('li');
+          item.style.marginBottom = '6px';
+          item.textContent = `${signalToEmoji(detail.signal)} ${detail.name}: ${detail.value}`;
+          indicatorList.appendChild(item);
+        });
+
+        card.innerHTML = `
+          <h2>${pick.symbol}</h2>
+          <div class="percentage">${score}%</div>
+          <p>${pick.explanation}</p>
+          <p style="color: #666; margin-top: -10px;">Last price: ${price}</p>
+        `;
+        card.appendChild(indicatorList);
+
+        picksContainer.appendChild(card);
+      });
+    }
+
+    async function refreshPicks() {
+      if (!picksContainer) {
+        return;
+      }
+      try {
+        const response = await fetch('/api/picks');
+        if (!response.ok) {
+          throw new Error(`Request failed: ${response.status}`);
+        }
+        const data = await response.json();
+        renderPicks(data.picks ?? []);
+      } catch (error) {
+        console.error('Failed to load picks', error);
+        picksContainer.innerHTML = '';
+        const errorCard = document.createElement('div');
+        errorCard.className = 'card';
+        errorCard.innerHTML = '<h2>Signal error</h2><p>We could not reach the AI signal service. Refresh to try again.</p>';
+        picksContainer.appendChild(errorCard);
+      }
+    }
+
+    refreshPicks();
+    setInterval(refreshPicks, REFRESH_MS);
   </script>
 </body>
 </html>
