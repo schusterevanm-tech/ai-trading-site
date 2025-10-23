@@ -71,9 +71,60 @@
     .link a:hover {
       text-decoration: underline;
     }
+
+    /* Navigation Bar */
+    .nav-bar {
+      background-color: #0D0D0D;
+      padding: 20px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-container a {
+      color: #00FFC6;
+      margin-left: 20px;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .nav-container a.logo {
+      margin-left: 0;
+      color: #00FFC6;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .nav-container a:hover {
+      text-decoration: underline;
+    }
+    /* Footer */
+    .footer {
+      background-color: #0D0D0D;
+      font-size: 0.8rem;
+      color: #666666;
+      padding: 20px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
+  <!-- Navigation Bar -->
+  <header class="nav-bar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">AI Trade Edge</a>
+      <nav>
+        <a href="index.html#picks">AI Picks</a>
+        <a href="index.html#learn">Learn</a>
+        <a href="faq.html">FAQs</a>
+        <a href="login.html" class="button">Login</a>
+      </nav>
+    </div>
+  </header>
   <div class="container">
     <h1>Sign In</h1>
     <form action="index.html#picks" method="get">
@@ -89,5 +140,10 @@
       Don't have an account? <a href="signup.html">Create one</a>
     </div>
   </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 AI Trade Platform. All rights reserved.</p>
+  </footer>
 </body>
 </html>
