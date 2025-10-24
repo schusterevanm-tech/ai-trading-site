@@ -61,6 +61,224 @@
       color: #CCCCCC;
       margin-bottom: 16px;
     }
+    .roadmap-grid {
+      display: grid;
+      gap: 26px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      margin-top: 40px;
+    }
+    .roadmap-card {
+      background: #0D0D0D;
+      border-radius: 20px;
+      border: 1px solid rgba(0, 255, 198, 0.4);
+      padding: 24px;
+      text-align: left;
+      transition: border-color 0.3s ease, transform 0.2s ease;
+    }
+    .roadmap-card:hover {
+      border-color: #00FFC6;
+      transform: translateY(-4px);
+    }
+    .roadmap-card h4 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #00FFC6;
+    }
+    .roadmap-card ul {
+      padding-left: 18px;
+      margin: 0;
+      color: #CCCCCC;
+    }
+    .roadmap-card li {
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+    .milestone-list {
+      display: grid;
+      gap: 18px;
+      margin-top: 30px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+    .milestone {
+      background: #101010;
+      border-left: 4px solid #00FFC6;
+      padding: 18px 22px;
+      border-radius: 14px;
+    }
+    .milestone strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1.05rem;
+      color: #00FFC6;
+    }
+    .routine-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 30px;
+      text-align: left;
+    }
+    .routine-card {
+      background: #0D0D0D;
+      border-radius: 18px;
+      padding: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .routine-card h4 {
+      margin-top: 0;
+      color: #00FFC6;
+      margin-bottom: 12px;
+    }
+    .routine-card p,
+    .routine-card ul {
+      color: #CCCCCC;
+      font-size: 0.95rem;
+    }
+    .routine-card ul {
+      padding-left: 18px;
+      margin: 0;
+    }
+    .resource-callout {
+      background: linear-gradient(135deg, rgba(0, 255, 198, 0.1), rgba(0, 255, 198, 0));
+      border: 1px solid rgba(0, 255, 198, 0.4);
+      padding: 26px;
+      border-radius: 20px;
+      max-width: 880px;
+      margin: 40px auto 0;
+      text-align: left;
+    }
+    .resource-callout h3 {
+      margin-top: 0;
+      color: #00FFC6;
+      margin-bottom: 14px;
+    }
+    .resource-callout ul {
+      margin: 0;
+      padding-left: 18px;
+      color: #CCCCCC;
+    }
+    .resource-callout li {
+      margin-bottom: 8px;
+    }
+    .interactive-section {
+      background: radial-gradient(circle at top, rgba(0, 255, 198, 0.12), transparent 55%);
+      border-top: 1px solid rgba(0, 255, 198, 0.1);
+      border-bottom: 1px solid rgba(0, 255, 198, 0.1);
+    }
+    .animation-grid,
+    .simulation-grid {
+      display: grid;
+      gap: 26px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      margin-top: 40px;
+    }
+    .animation-card,
+    .simulation-card {
+      background: #0D0D0D;
+      border-radius: 20px;
+      padding: 24px;
+      border: 1px solid rgba(0, 255, 198, 0.4);
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+    .animation-card::after {
+      content: "";
+      position: absolute;
+      inset: -40% -20% auto;
+      height: 140%;
+      background: radial-gradient(circle, rgba(0, 255, 198, 0.25), transparent 60%);
+      opacity: 0;
+      transform: scale(0.8) translateY(20px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      animation: pulseGlow 6s ease-in-out infinite;
+    }
+    .animation-card:hover::after {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+    @keyframes pulseGlow {
+      0%, 100% {
+        opacity: 0.1;
+      }
+      50% {
+        opacity: 0.35;
+      }
+    }
+    .animation-card h4,
+    .simulation-card h4 {
+      margin-top: 0;
+      color: #00FFC6;
+      margin-bottom: 12px;
+    }
+    .animation-steps,
+    .simulation-details {
+      color: #CCCCCC;
+      font-size: 0.95rem;
+      margin: 0;
+      padding-left: 18px;
+    }
+    .animation-steps li,
+    .simulation-details li {
+      margin-bottom: 8px;
+    }
+    .sim-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #00FFC6;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 16px;
+    }
+    .sim-cta span {
+      font-size: 1.2rem;
+    }
+    .quiz-section {
+      background: #090909;
+      border-top: 1px solid rgba(0, 255, 198, 0.15);
+    }
+    .quiz-grid {
+      display: grid;
+      gap: 26px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      margin-top: 40px;
+      text-align: left;
+    }
+    .quiz-card {
+      background: #0D0D0D;
+      border-radius: 20px;
+      padding: 24px;
+      border: 1px solid rgba(0, 255, 198, 0.35);
+    }
+    .quiz-card h4 {
+      margin-top: 0;
+      color: #00FFC6;
+      margin-bottom: 12px;
+    }
+    .quiz-card button {
+      margin-top: 14px;
+      padding: 10px 18px;
+      border-radius: 18px;
+      border: 2px solid #00FFC6;
+      background: transparent;
+      color: #00FFC6;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .quiz-card button:hover {
+      background: #00FFC6;
+      color: #0A0A0A;
+    }
+    .quiz-feedback {
+      margin-top: 12px;
+      font-weight: bold;
+      min-height: 1.2em;
+    }
     a.button, .card a {
       display: inline-block;
       padding: 14px 28px;
@@ -174,8 +392,237 @@
     </div>
   </section>
 
+  <section class="section">
+    <h2>Beginner Lesson Roadmap</h2>
+    <p>Work through each module in order. Each lesson builds on the last so you can confidently place your first trades.</p>
+    <div class="roadmap-grid">
+      <div class="roadmap-card">
+        <h4>Module 1 · Market Foundations</h4>
+        <ul>
+          <li>How stock markets function and who participates</li>
+          <li>Understanding tickers, indices, and trading sessions</li>
+          <li>Setting up your brokerage account the right way</li>
+        </ul>
+      </div>
+      <div class="roadmap-card">
+        <h4>Module 2 · Order Types & Execution</h4>
+        <ul>
+          <li>Market vs. limit orders explained with visuals</li>
+          <li>When to use stop-loss and take-profit instructions</li>
+          <li>Common execution mistakes to avoid</li>
+        </ul>
+      </div>
+      <div class="roadmap-card">
+        <h4>Module 3 · Risk Guardrails</h4>
+        <ul>
+          <li>Position sizing formulas using the 1% rule</li>
+          <li>How to build a trade journal and reflect on results</li>
+          <li>Checklist before entering any new position</li>
+        </ul>
+      </div>
+      <div class="roadmap-card">
+        <h4>Module 4 · Practice & Review</h4>
+        <ul>
+          <li>Paper trading drills guided by TradeBot prompts</li>
+          <li>Weekly recap sessions with AI-generated feedback</li>
+          <li>Milestone quiz to confirm what you’ve learned</li>
+        </ul>
+      </div>
+    </div>
+    <div class="resource-callout">
+      <h3>Download the Starter Playbook</h3>
+      <ul>
+        <li>Lesson summaries you can print or keep on your desktop</li>
+        <li>Interactive worksheets to map your goals and risk tolerance</li>
+        <li>Bonus glossary of 60+ beginner terms with plain-language definitions</li>
+      </ul>
+      <p style="margin-top: 18px;"><a class="button" href="fundamentals.html">Access the Playbook</a></p>
+    </div>
+  </section>
+
+  <section class="section interactive-section">
+    <h2>Guided Animations & Hands-On Simulations</h2>
+    <p>Watch concepts come alive with animated walkthroughs, then apply them inside browser-based practice drills.</p>
+    <div class="animation-grid">
+      <div class="animation-card">
+        <h4>Order Flow Animation</h4>
+        <ul class="animation-steps">
+          <li>Follow the lifecycle of a market order from submission to fill.</li>
+          <li>Toggle between bullish and bearish scenarios to compare the tape.</li>
+          <li>Bookmark key frames that highlight bid/ask momentum.</li>
+        </ul>
+      </div>
+      <div class="animation-card">
+        <h4>Risk Management Visualizer</h4>
+        <ul class="animation-steps">
+          <li>Use the slider to animate how position size changes with equity.</li>
+          <li>Watch stop-loss levels breathe as volatility adjusts.</li>
+          <li>Replay scenarios to cement 1% risk discipline.</li>
+        </ul>
+      </div>
+      <div class="animation-card">
+        <h4>Chart Pattern Spotlight</h4>
+        <ul class="animation-steps">
+          <li>See candlestick reversals animate in slow motion.</li>
+          <li>Pause at inflection points to log what invalidates the setup.</li>
+          <li>Download snapshots for your pattern recognition journal.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="simulation-grid" style="margin-top: 50px;">
+      <div class="simulation-card">
+        <h4>Trade Execution Simulator</h4>
+        <ul class="simulation-details">
+          <li>Practice submitting market, limit, and stop orders on delayed data.</li>
+          <li>Receive instant feedback on slippage and fill probability.</li>
+          <li>Export your execution log to share with a mentor.</li>
+        </ul>
+        <a class="sim-cta" href="fundamentals.html#simulator"><span>➜</span> Launch Execution Drill</a>
+      </div>
+      <div class="simulation-card">
+        <h4>Risk Scenario Lab</h4>
+        <ul class="simulation-details">
+          <li>Stress-test your plan against sudden gaps and trending days.</li>
+          <li>Adjust stop placement and watch P&amp;L projections update in real time.</li>
+          <li>Unlock TradeBot commentary after each session.</li>
+        </ul>
+        <a class="sim-cta" href="fundamentals.html#risk-lab"><span>➜</span> Start Risk Simulation</a>
+      </div>
+      <div class="simulation-card">
+        <h4>Journal Reflection Coach</h4>
+        <ul class="simulation-details">
+          <li>Replay your simulated trades with annotated decision points.</li>
+          <li>Tag emotions and triggers to reveal behavioural patterns.</li>
+          <li>Generate an AI recap to plan your next improvement.</li>
+        </ul>
+        <a class="sim-cta" href="fundamentals.html#journal-coach"><span>➜</span> Review Your Sessions</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Milestones to Track</h2>
+    <p>Mark these milestones inside your journal. Once you can check each box, you’re ready to explore intermediate strategies.</p>
+    <div class="milestone-list">
+      <div class="milestone">
+        <strong>Milestone 1 · Comfort with Market Basics</strong>
+        <span>Explain how trades are matched, what bid/ask spreads are, and how trading hours impact liquidity.</span>
+      </div>
+      <div class="milestone">
+        <strong>Milestone 2 · Confident Order Placement</strong>
+        <span>Submit practice market and limit orders in a demo account, documenting outcomes and lessons learned.</span>
+      </div>
+      <div class="milestone">
+        <strong>Milestone 3 · Defined Risk Plan</strong>
+        <span>Calculate position size for three different setups using your risk percentage and set alerts for exits.</span>
+      </div>
+      <div class="milestone">
+        <strong>Milestone 4 · Consistent Review Habit</strong>
+        <span>Complete two weekly recaps noting strengths, mistakes, and next actions guided by TradeBot prompts.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section quiz-section">
+    <h2>Quick Knowledge Checks</h2>
+    <p>Lock in your retention with short quizzes after each module. Review explanations instantly to close any gaps.</p>
+    <div class="quiz-grid">
+      <div class="quiz-card" data-quiz="order-types">
+        <h4>Module 2 · Order Types</h4>
+        <p>Which order type guarantees the execution price you specify?</p>
+        <label><input type="radio" name="order-types" value="market"> Market Order</label><br>
+        <label><input type="radio" name="order-types" value="limit"> Limit Order</label><br>
+        <label><input type="radio" name="order-types" value="stop"> Stop Order</label>
+        <button type="button">Check Answer</button>
+        <div class="quiz-feedback" aria-live="polite"></div>
+      </div>
+      <div class="quiz-card" data-quiz="risk">
+        <h4>Module 3 · Risk Guardrails</h4>
+        <p>If you risk 1% of a $5,000 account per trade, what is the maximum loss you’ll allow?</p>
+        <label><input type="radio" name="risk" value="25"> $25</label><br>
+        <label><input type="radio" name="risk" value="50"> $50</label><br>
+        <label><input type="radio" name="risk" value="100"> $100</label>
+        <button type="button">Check Answer</button>
+        <div class="quiz-feedback" aria-live="polite"></div>
+      </div>
+      <div class="quiz-card" data-quiz="journal">
+        <h4>Module 4 · Practice Review</h4>
+        <p>What is the primary purpose of keeping a trade journal?</p>
+        <label><input type="radio" name="journal" value="taxes"> Track trades for tax filing only</label><br>
+        <label><input type="radio" name="journal" value="reflection"> Reflect on decisions and improve future trades</label><br>
+        <label><input type="radio" name="journal" value="brag"> Share winning screenshots</label>
+        <button type="button">Check Answer</button>
+        <div class="quiz-feedback" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Your Weekly Routine</h2>
+    <p>Blend study, practice, and reflection. Use these suggestions as a template and adjust to your schedule.</p>
+    <div class="routine-grid">
+      <div class="routine-card">
+        <h4>Prep Day</h4>
+        <ul>
+          <li>Watch the next lesson video and read the summary notes.</li>
+          <li>Highlight new terms to ask TradeBot for clarification.</li>
+          <li>Set a realistic objective for the week’s practice session.</li>
+        </ul>
+      </div>
+      <div class="routine-card">
+        <h4>Practice Day</h4>
+        <ul>
+          <li>Run through two paper trades using the lesson checklist.</li>
+          <li>Record entries, exits, and emotions in your trade journal.</li>
+          <li>Compare your plan to AI signals to spot alignment or gaps.</li>
+        </ul>
+      </div>
+      <div class="routine-card">
+        <h4>Review Day</h4>
+        <ul>
+          <li>Complete a 10-minute recap with TradeBot’s reflection prompts.</li>
+          <li>Update your milestone tracker and identify one improvement.</li>
+          <li>Celebrate progress—small wins build trading confidence.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <footer class="footer">
     <p>&copy; 2025 AI Trade Platform. All rights reserved.</p>
   </footer>
+  <script>
+    const quizAnswers = {
+      'order-types': 'limit',
+      'risk': '50',
+      'journal': 'reflection'
+    };
+
+    document.querySelectorAll('.quiz-card').forEach(card => {
+      const quizKey = card.dataset.quiz;
+      const button = card.querySelector('button');
+      const feedback = card.querySelector('.quiz-feedback');
+      button.addEventListener('click', () => {
+        const selected = card.querySelector('input[type="radio"]:checked');
+        if (!selected) {
+          feedback.textContent = 'Choose an option to see if you are correct.';
+          feedback.style.color = '#FFD166';
+          return;
+        }
+        if (selected.value === quizAnswers[quizKey]) {
+          feedback.textContent = 'Correct! You’re ready to keep moving forward.';
+          feedback.style.color = '#00FFC6';
+        } else {
+          const explanations = {
+            'order-types': 'Limit orders execute only at your price or better, which locks in the price control you set.',
+            'risk': '1% of $5,000 equals $50. Protect your account by capping downside at that amount.',
+            'journal': 'A journal helps you review decisions, spot patterns, and improve your trading process.'
+          };
+          feedback.textContent = `Not quite. ${explanations[quizKey]}`;
+          feedback.style.color = '#FF6B6B';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
