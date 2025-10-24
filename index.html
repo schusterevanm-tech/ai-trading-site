@@ -469,7 +469,15 @@
     });
 
     const picksContainer = document.getElementById('picks-container');
-    const REFRESH_MS = (Number(document.body.dataset.refreshMs) || 300000);
+    const REFRESH_MS = Number(document.body.dataset.refreshMs) || 300000;
+    const WATCHLIST = (document.body.dataset.watchlist || 'SPY,QQQ,AAPL,MSFT,NVDA')
+      .split(',')
+      .map((symbol) => symbol.trim().toUpperCase())
+      .filter(Boolean);
+
+    function clamp(value, min = -1, max = 1) {
+      return Math.max(min, Math.min(max, value));
+    }
 
     function signalToEmoji(signal) {
       if (signal == null || Number.isNaN(signal)) {
@@ -529,17 +537,144 @@
       });
     }
 
+    function buildExplanation(signals) {
+      const highlights = [];
+
+      if (signals.momentum > 0.25) {
+        highlights.push('Momentum is strong today with buyers in control.');
+      } else if (signals.momentum < -0.25) {
+        highlights.push('Downside pressure is dominating today.');
+      }
+
+      if (signals.trend > 0.2) {
+        highlights.push('Intermediate trend is bullish with price holding above the 200-day average.');
+      } else if (signals.trend < -0.2) {
+        highlights.push('Price remains below its long-term average—trend confirmation is weak.');
+      }
+
+      if (signals.range > 0.25) {
+        highlights.push('Price is trading near the top of its 52-week range.');
+      } else if (signals.range < -0.25) {
+        highlights.push('Price is hovering near the bottom of its 52-week range.');
+      }
+
+      if (signals.volume > 0.25) {
+        highlights.push('Volume is running hot relative to the 3-month average.');
+      } else if (signals.volume < -0.25) {
+        highlights.push('Participation is light versus typical volume.');
+      }
+
+      if (highlights.length === 0) {
+        return 'Signals are balanced right now. Monitor for a decisive move before acting.';
+      }
+
+      return highlights.join(' ');
+    }
+
+    function computePick(quote) {
+      const price = Number(quote.regularMarketPrice);
+      const changePercent = Number(quote.regularMarketChangePercent);
+      const fifty = Number(quote.fiftyDayAverage);
+      const twoHundred = Number(quote.twoHundredDayAverage);
+      const volume = Number(quote.regularMarketVolume);
+      const avgVolume = Number(quote.averageDailyVolume3Month);
+      const high52 = Number(quote.fiftyTwoWeekHigh);
+      const low52 = Number(quote.fiftyTwoWeekLow);
+
+      const momentum = Number.isFinite(changePercent) ? clamp(changePercent / 10) : null;
+      const trend = Number.isFinite(fifty) && Number.isFinite(twoHundred) && twoHundred !== 0
+        ? clamp((fifty - twoHundred) / Math.abs(twoHundred))
+        : null;
+      const range = Number.isFinite(price) && Number.isFinite(high52) && Number.isFinite(low52) && high52 !== low52
+        ? clamp(((price - low52) / (high52 - low52) - 0.5) * 2)
+        : null;
+      const volumeSignal = Number.isFinite(volume) && Number.isFinite(avgVolume) && avgVolume !== 0
+        ? clamp((volume - avgVolume) / avgVolume)
+        : null;
+
+      const availableSignals = [momentum, trend, range, volumeSignal].filter((value) => value != null);
+      const score = availableSignals.length > 0
+        ? availableSignals.reduce((sum, value) => sum + value, 0) / availableSignals.length
+        : 0;
+
+      const signals = {
+        momentum: momentum ?? 0,
+        trend: trend ?? 0,
+        range: range ?? 0,
+        volume: volumeSignal ?? 0,
+      };
+
+      const details = [];
+      if (Number.isFinite(changePercent)) {
+        details.push({
+          name: 'Price Change',
+          value: `${changePercent.toFixed(2)}%`,
+          signal: momentum,
+        });
+      }
+      if (Number.isFinite(fifty) && Number.isFinite(twoHundred)) {
+        const diffPercent = ((fifty - twoHundred) / Math.abs(twoHundred)) * 100;
+        details.push({
+          name: '50d vs 200d',
+          value: `${diffPercent.toFixed(2)}%`,
+          signal: trend,
+        });
+      }
+      if (Number.isFinite(low52) && Number.isFinite(high52) && Number.isFinite(price)) {
+        const position = ((price - low52) / (high52 - low52)) * 100;
+        details.push({
+          name: '52w Position',
+          value: `${position.toFixed(1)}% of range`,
+          signal: range,
+        });
+      }
+      if (Number.isFinite(volume) && Number.isFinite(avgVolume)) {
+        const relVolume = avgVolume ? ((volume - avgVolume) / avgVolume) * 100 : 0;
+        details.push({
+          name: 'Volume vs Avg',
+          value: `${relVolume.toFixed(1)}%`,
+          signal: volumeSignal,
+        });
+      }
+
+      return {
+        symbol: quote.symbol,
+        score,
+        latestPrice: Number.isFinite(price) ? price : null,
+        explanation: buildExplanation(signals),
+        details,
+      };
+    }
+
+    async function loadLivePicks(symbols) {
+      if (!symbols.length) {
+        return [];
+      }
+
+      const url = new URL('https://query1.finance.yahoo.com/v7/finance/quote');
+      url.searchParams.set('symbols', symbols.join(','));
+
+      const response = await fetch(url.toString());
+      if (!response.ok) {
+        throw new Error(`Quote request failed: ${response.status}`);
+      }
+
+      const payload = await response.json();
+      const results = payload?.quoteResponse?.result ?? [];
+
+      return results
+        .map(computePick)
+        .filter((pick) => pick && Number.isFinite(pick.score))
+        .sort((a, b) => b.score - a.score);
+    }
+
     async function refreshPicks() {
       if (!picksContainer) {
         return;
       }
       try {
-        const response = await fetch('/api/picks');
-        if (!response.ok) {
-          throw new Error(`Request failed: ${response.status}`);
-        }
-        const data = await response.json();
-        renderPicks(data.picks ?? []);
+        const picks = await loadLivePicks(WATCHLIST);
+        renderPicks(picks);
       } catch (error) {
         console.error('Failed to load picks', error);
         picksContainer.innerHTML = '';
